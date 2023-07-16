@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    font:sans-serif;
+}
+body{
+    background: rgba(0, 0, 0, 0.865);
+    color: aliceblue;
+    font-family: system-ui;
+}
+.crud{
+    width: 80%;
+    margin: auto;
+}
+.head{
+    text-align: center;
+    text-transform: uppercase;
+    margin: 15px 0;
+}
