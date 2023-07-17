@@ -77,7 +77,7 @@ function showdata(){
    {
     table+=`
     <tr>
-                        <td>i</td>
+                        <td>${i}</td>
                         <td>${datapro[i].id}</td>
                         <td>${datapro[i].price}</td>
                         <td>${datapro[i].taxes}</td>
@@ -85,8 +85,8 @@ function showdata(){
                         <td>${datapro[i].discound}</td>
                         <td>${datapro[i].category}</td>
                         <td>${datapro[i].total}</td>
-                        <td><button id="updete">Updete</button></td>
-                        <td><button id="delete">Delete</button></td>
+                        <td><button  id="updete">Updete</button></td>
+                        <td><button onclick="deleteData(${i})" id="delete">Delete</button></td>
     </tr>`
    }
 
@@ -96,6 +96,12 @@ function showdata(){
 showdata()
 //count
 //delete
+function deleteData(i)
+{
+   datapro.splice(i,1);
+   localStorage.product=JSON.stringify(datapro);
+   showdata()
+}
 //updete
 //search
 //clean data
