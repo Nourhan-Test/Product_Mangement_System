@@ -91,6 +91,14 @@ function showdata(){
    }
 
    document.getElementById('tbody').innerHTML=table;
+   let btndelete=document.getElementById('deleteAll');
+   if(datapro.length>0)
+   {
+     btndelete.innerHTML=`<button onclick="deleteAll()" >Delete All</button>`
+   }
+   else{
+    btndelete.innerHTML='';
+   }
 }
 
 showdata()
@@ -101,6 +109,12 @@ function deleteData(i)
    datapro.splice(i,1);
    localStorage.product=JSON.stringify(datapro);
    showdata()
+}
+function deleteAll(){
+    localStorage.clear()
+    datapro.splice(0)
+    showdata()
+
 }
 //updete
 //search
