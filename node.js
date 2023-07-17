@@ -7,7 +7,8 @@ let total=document.getElementById('total');
 let count=document.getElementById('count');
 let category=document.getElementById('category');
 let submit=document.getElementById('submit');
-
+let tmp;
+let mode='craete';
 //get total
 function getTotal(){
    if(price.value !='')
@@ -47,7 +48,10 @@ submit.onclick=function(){
     count:count.value,
     category:category.value,
    }
-   if(newpro.count>1)
+
+   if(mode==="create")
+   {
+      if(newpro.count>1)
    {
     for(let i=0;i<newpro.count;i++)
     {
@@ -57,6 +61,11 @@ submit.onclick=function(){
    else{
     datapro.push(newpro)
    }
+   }else{
+    datapro[tmp]=newpro;
+   }
+
+   
    localStorage.setItem('product',JSON.stringify(datapro))
    clearData()
    showdata()
@@ -87,14 +96,14 @@ function showdata(){
     table+=`
     <tr>
                         <td>${i}</td>
-                        <td>${datapro[i].id}</td>
+                        <td>${datapro[i].title}</td>
                         <td>${datapro[i].price}</td>
                         <td>${datapro[i].taxes}</td>
                         <td>${datapro[i].ads}</td>
                         <td>${datapro[i].discound}</td>
                         <td>${datapro[i].category}</td>
                         <td>${datapro[i].total}</td>
-                        <td><button  id="updete">Updete</button></td>
+                        <td><button onclick="updateData(${i})" id="updete">Updete</button></td>
                         <td><button onclick="deleteData(${i})" id="delete">Delete</button></td>
     </tr>`
    }
@@ -129,5 +138,19 @@ function deleteAll(){
 
 }
 //updete
+function updateData(i)
+{
+    title.value=datapro[i].title;
+    price.value=datapro[i].price;
+    ads.value=datapro[i].ads;
+    taxes.value=datapro[i].taxes;
+    discound.value=datapro[i].discound;
+    category.value=datapro[i].category;
+    total.value=getTotal();
+    count.style.display='none';
+    submit.innerHTML='Update';
+    mode='update';
+    tmp=i;
+}
 //search
 //clean data
